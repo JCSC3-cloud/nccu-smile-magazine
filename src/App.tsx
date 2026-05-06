@@ -23,7 +23,9 @@ import {
   Activity,
   ScanLine,
   Hash,
-  MousePointer2
+  MousePointer2,
+  ArrowRight,
+  Monitor
 } from 'lucide-react';
 
 // ==========================================
@@ -36,10 +38,24 @@ export default function App() {
   const [socialMode, setSocialMode] = useState(false);
   const [socialView, setSocialView] = useState(0);
 
+  // 新增功能：首頁互動時間軸的狀態
+  const [activeEra, setActiveEra] = useState(0);
+
   // 當切換視圖時，平滑滾動到頂部
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [currentView, socialMode, socialView]);
+
+  // ==========================================
+  // 新增功能：首頁互動時間軸資料
+  // ==========================================
+  const timelineData = [
+    { year: "1968", title: "一切展示之母", desc: "Douglas Engelbart 展示了滑鼠、視窗與超文本，為現代圖形介面奠定基礎，人類第一次看見「點擊」的可能。", icon: <MousePointer2 size={24} /> },
+    { year: "1984", title: "Macintosh 誕生", desc: "Apple 將圖形介面帶入個人電腦市場，讓「直覺操作」成為現實，開啟了數位平權的黎明。", icon: <Monitor size={24} /> },
+    { year: "2004", title: "社群網路起點", desc: "Facebook 創立，社交重心從單純列表轉向「動態分享」，揭開了數位身分表演的序幕。", icon: <Users size={24} /> },
+    { year: "2016", title: "演算法接管", desc: "社群平台棄用時間排序改用演算法，從「朋友動態」轉向「注意力爭奪」，我們成為流量工廠的一部分。", icon: <Activity size={24} /> },
+    { year: "2026", title: "隱形介面與 AI", desc: "生成式 AI 崛起，我們正從「所見即所得」走向「所思即所得」的新紀元，重新拿回第一人稱。", icon: <Sparkles size={24} /> },
+  ];
 
   // ==========================================
   // 內容資料庫 1 (原版 GUI 專題，完全不動)
@@ -51,7 +67,7 @@ export default function App() {
       category: "歷史序幕",
       title: "漆黑螢幕裡的微光：從指令枷鎖到「點擊」革命的黎明",
       icon: <Terminal size={20} />,
-      imageUrl: "./1000010373.jpg", 
+      imageUrl: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80", 
       imageAlt: "專注於電腦螢幕前的工程師，象徵科技發展背後的人類探索與不懈努力",
       summary: [
         "在 50 年前，用電腦是一場「不能出錯的考試」，必須記住一堆指令，打錯一個字系統便直接不理你。",
@@ -309,7 +325,7 @@ export default function App() {
             而是開始努力讓自己看起來「很好懂」。<br/>
             於是我們今天才能一邊滑手機，一邊完全不覺得自己在使用什麼高科技。<br/>
             ——畢竟，如果一項技術真的夠成功，<br/>
-            它最終的樣子，通常是：看起來什麼都沒發生。
+                它最終的樣子，通常是：看起來什麼都沒發生。
           </p>
         </>
       ),
@@ -686,26 +702,6 @@ export default function App() {
   ];
 
   // ==========================================
-  // 歷史時間軸資料庫 (GUI 專用，完全不動)
-  // ==========================================
-  const timelineData = [
-    { year: "1963", tag: "概念萌芽", title: "Sketchpad", desc: "Ivan Sutherland 完成 Sketchpad，圖形互動開始萌芽，使用者可以直接在螢幕上進行互動式繪圖。" },
-    { year: "1964", tag: "實驗室原型", title: "滑鼠原型誕生", desc: "Douglas Engelbart 團隊做出早期木製滑鼠原型，為後來 GUI 的指向操作奠定基礎。" },
-    { year: "1968", tag: "實驗室原型", title: "一切展示之母", desc: "Engelbart 公開展示滑鼠、視窗、超文字、協作編輯與視訊互動，提前預示現代個人電腦的核心樣貌。" },
-    { year: "1973", tag: "實驗室原型", title: "Xerox Alto", desc: "Xerox PARC 打造 Alto，讓 bitmapped display、滑鼠與圖形介面真正結合成可運作的電腦原型。" },
-    { year: "1974", tag: "軟體環境", title: "Smalltalk", desc: "Xerox PARC 的 Smalltalk 環境進一步發展出更成熟的視窗、圖示、選單與指標邏輯，讓現代 GUI 的雛形更完整。" },
-    { year: "1981", tag: "商業化", title: "Xerox Star", desc: "第一批商業化的 GUI 辦公系統之一，把圖示、資料夾、滑鼠、網路與桌面辦公概念整合進產品。" },
-    { year: "1983", tag: "商業化", title: "Apple Lisa", desc: "Apple 將 GUI 帶入商業市場，雖然價格高昂，但它是 GUI 從實驗室走向產品的重要過渡節點。" },
-    { year: "1984", tag: "商業化", title: "Macintosh", desc: "Apple 透過 Macintosh 建立桌面隱喻與直覺操作，讓一般人也能真正學會使用電腦。" },
-    { year: "1985", tag: "生態系萌芽", title: "Windows 1.0", desc: "Microsoft 正式進入圖形介面市場，GUI 競賽從單一產品走向整個 PC 生態系。" },
-    { year: "1990", tag: "普及化", title: "Windows 3.0", desc: "圖形介面開始真正大規模擴張，Microsoft 的 GUI 路線逐漸站穩。" },
-    { year: "1995", tag: "普及化", title: "Windows 95", desc: "開始功能表、工作列與桌面體驗被全球大量使用，GUI 成為家庭與辦公室的標準。" },
-    { year: "2007", tag: "觸控時代", title: "iPhone 觸控革命", desc: "多點觸控讓人們從滑鼠與鍵盤轉向直接用手指操作螢幕，介面革命進入新階段。" },
-    { year: "2011", tag: "對話介面", title: "Siri 語音助理", desc: "人機互動從圖形操作延伸到語音與自然語言，介面開始不只靠點擊。" },
-    { year: "2022", tag: "對話介面", title: "ChatGPT 崛起", desc: "生成式 AI 崛起，讓人機互動從「點擊視窗」進一步走向「直接對話」。" }
-  ];
-
-  // ==========================================
   // 內容資料庫 2 (全新新增：社群平台專題)
   // ==========================================
   const socialSeriesData = [
@@ -864,6 +860,16 @@ export default function App() {
 
             </div>
           </div>
+          
+          {/* 次引言 Style (Editorial Inline Supplement) */}
+          <div className="my-10 pl-5 md:pl-6 border-l-[3px] border-indigo-500 py-2">
+            <div className="text-indigo-500 font-mono text-[10px] tracking-[0.2em] uppercase mb-3 font-bold flex items-center gap-2">
+               <div className="w-1 h-1 bg-indigo-500 rounded-full"></div> 王志仁觀察
+            </div>
+            <p className="text-slate-700 font-serif text-lg leading-relaxed text-justify m-0">
+              如果只依靠市場力量，平台的發展往往會走向大者恆大。大型科技公司透過收購與投資，將潛在競爭者提早納入版圖，平台集中化因此愈發明顯。
+            </p>
+          </div>
 
           <h3 className="text-2xl font-bold text-slate-900 mt-16 mb-6 flex items-center gap-2">
             <span className="w-2 h-6 bg-indigo-500 inline-block rounded-sm"></span>
@@ -920,7 +926,7 @@ export default function App() {
       vol: "Vol. 02",
       category: "身分與展演",
       title: "活在第三人稱的自己：社群時代的身分表演",
-      icon: <Users size={20} />,
+      iconName: "Users",
       imageUrl: "https://images.unsplash.com/photo-1618365908648-e71bd5716cba?auto=format&fit=crop&q=80&w=1200",
       imageAlt: "在霓虹光影與鏡頭前精心設計的自我，社群時代的虛擬身分展演",
       metrics: { views: "8.1M", retention: "92%", trigger: "Social_Validation" },
@@ -1003,7 +1009,7 @@ export default function App() {
       vol: "Vol. 03",
       category: "注意力經濟",
       title: "免費的社群，昂貴的注意力：平台真正販售的是什麼？",
-      icon: <Smartphone size={20} />,
+      iconName: "Smartphone",
       imageUrl: "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&q=80&w=1200",
       imageAlt: "在黑暗中發光的智慧型手機螢幕，象徵無形的注意力收割",
       metrics: { views: "12.5M", retention: "98%", trigger: "Dopamine_Loop" },
@@ -1043,13 +1049,22 @@ export default function App() {
             這也是為什麼，今天的社群平台早就不只是「讓人交流的工具」。如果說早期的 Facebook、Instagram，核心還比較接近朋友間的連結與生活分享，那麼現在的社群平台，更像是一座精密運作的注意力工廠。它表面上讓你自由滑動、自由選擇、自由觀看，但在背後，整套系統其實都在朝一個很明確的方向運作：讓你留下來更久。
           </p>
           <p className="mb-8 text-justify leading-loose text-slate-700">
-            因為只要你停留得夠久，平台就能塞進更多內容，也能安排更多廣告。你花在平台上的每一分鐘，對平台來說都不是空白時間，而是商業價值持續累積的時間。你以為你在消磨時間，平台卻在把這段時間換算成收益。所以，平台真正關心的，很多時候不是你有沒有看見朋友，不是你有沒有獲得更好的資訊，也不一定是你有沒有真的更快樂。它更在意的是：你有沒有停下來。你停了多久。你下一則會不會繼續看。你會不會不知惹覺再多留五分鐘、十分鐘、半小時。
+            因為只要你停留得夠久，平台就能塞進更多內容，也能安排更多廣告。你花在平台上的每一分鐘，對平台來說都不是空白時間，而是商業價值持續累積的時間。你以為你在消磨時間，平台卻在把這段時間換算成收益。所以，平台真正關心的，很多時候不是你有沒有看見朋友，不是你有沒有獲得更好的資訊，也不一定是你有沒有真的更快樂。它更在意的是：你有沒有停下來。你停了多久。你下一則會不會繼續看。你會不會不知覺再多留五分鐘、十分鐘、半小時。
           </p>
 
           <h3 className="text-2xl font-bold text-slate-900 mt-12 mb-6 flex items-center gap-2">
             <span className="w-2 h-6 bg-indigo-500 inline-block rounded-sm"></span>
             演算法的本質：抓住眼球
           </h3>
+          
+          {/* 插入專家引用 B：向右浮動的細緻邊註 (Slim Side Note) */}
+          <aside className="my-8 md:float-right md:w-64 md:ml-10 md:mb-6 border-t border-indigo-300 pt-4">
+            <h4 className="text-indigo-600 font-mono text-[10px] tracking-widest uppercase mb-3 font-bold">平台比你更懂你停在哪裡</h4>
+            <p className="text-slate-500 text-sm font-serif leading-relaxed text-justify m-0 italic">
+              在碎片化的網路時代，越容易被消化的內容，就越容易被接受。相較於文字，聲音與影音更符合平台競逐注意力的需求，這也使內容型態與分發邏輯一併改變。
+            </p>
+          </aside>
+
           <p className="mb-6 text-justify leading-loose text-slate-700">
             而要做到這件事，平台需要的不只是內容，而是演算法。演算法本身，並不是一個帶有善惡的詞。它原本只是平台用來整理、篩選與推薦內容的方式。在內容量爆炸的時代，沒有演算法，社群平台幾乎也無法運作。問題不是演算法存在，而是它被放進了什麼樣的商業目標裡。
           </p>
@@ -1059,7 +1074,7 @@ export default function App() {
           <p className="mb-8 text-justify leading-loose text-slate-700">
             所以到最後，被優先放大的，未必是最有價值的內容，而是最能抓住人眼球的內容。這也是為什麼，我們現在滑社群時越來越容易有一種感覺：明明只是想放鬆一下，卻總是被一些特別強烈的東西吸住。不是因為我們真的主動去找那些內容，而是因為平台很清楚，那些內容更有機會讓人繼續看下去。
           </p>
-          <p className="mb-8 text-justify leading-loose text-slate-700">
+          <p className="mb-8 text-justify leading-loose text-slate-700 clear-both">
             從這個角度來看，社群平台真正販售的，從來不只是廣告版位，而是被整理過、預測過、切分過的使用者注意力。廣告主買的，不只是「一個地方可以放廣告」，而是「一群很可能會對這個東西有反應的人」。而平台之所以能把這件事做得越來越精準，就是因為它長期蒐集、分析、學習我們的行為。它知道誰會看什麼、誰對什麼敏感、誰在什麼時間最容易點開某種內容，甚至知道什麼樣的順序安排，最有可能提高一則貼文或一則廣告的效果。換句話說，平台真正厲害的商品，不是內容本身，而是它對人的掌握能力。
           </p>
 
@@ -1077,6 +1092,19 @@ export default function App() {
           <p className="mb-6 text-justify leading-loose text-slate-700">
             這句話並不表示使用者真的像商品一樣被單純賣掉。更準確地說，是使用者的行為、停留、偏好與注意力，被平台整理成有商業價值的資源，再出售給需要精準觸及受眾的市場。平台賣的不是你這個人本身，而是你可被預測、可被影響、可被轉化的那一部分。
           </p>
+
+          {/* 插入專家引用 A：千人千面 Pull Quote */}
+          <blockquote className="my-16 py-10 border-y border-indigo-200/50 text-center max-w-3xl mx-auto relative px-6 md:px-12">
+            <div className="text-indigo-500 font-mono text-[10px] tracking-[0.2em] font-bold uppercase mb-6 flex justify-center items-center gap-2">
+              <span className="w-4 h-px bg-indigo-300"></span>
+              千人千面
+              <span className="w-4 h-px bg-indigo-300"></span>
+            </div>
+            <p className="text-2xl md:text-4xl font-serif font-black text-slate-800 leading-[1.4] text-balance">
+              「今天的平台不再是一對多的大眾媒體，而是透過使用者行為分析，進入一對一客製化的內容分發。表面上大家都在用同一個平台，但實際上，每個人看到的都是不同版本的世界。」
+            </p>
+          </blockquote>
+
           <p className="mb-6 text-justify leading-loose text-slate-700">
             而最值得警覺的是，這整個過程常常進行得非常自然，甚至自然到讓人誤以為這只是單純的「個人喜好」。比如說，你可能原本只是多看了幾眼某種類型的內容，演算法很快就會記住。之後，你的推薦頁面開始越來越集中、越來越偏向某種特定方向。你看得越多，它推得越多；它推得越多，你停留得也越久。久而久之，你會覺得，好像自己真的就只對這些東西有興趣，好像世界本來就長這樣。
           </p>
@@ -1137,7 +1165,7 @@ export default function App() {
       vol: "Vol. 04",
       category: "數據與監控",
       title: "你以為你在看別人，其實你也在被定義",
-      icon: <Eye size={20} />,
+      iconName: "Eye",
       imageUrl: "https://images.unsplash.com/photo-1541560052-5e137f229371?auto=format&fit=crop&q=80&w=1200", 
       imageAlt: "螢幕光反射在人類眼睛裡，象徵演算法背後的無形標籤與數位追蹤",
       metrics: { views: "9.3M", retention: "85%", trigger: "Filter_Bubble" },
@@ -1159,10 +1187,18 @@ export default function App() {
           <p className="mb-6 text-justify leading-loose text-slate-700">
             我們以為自己只是在看別人。只是看別人的近況、別人的生活、別人的選擇，像是站在一個安全距離之外，靜靜地把別人的人生片段收進眼裡。可很多時候，事情沒有那麼簡單。因為當我們不斷看著別人的時候，我們其實也正在一點一點地，被那些畫面重新塑形。
           </p>
+          
+          {/* 插入專家引用 C：向左浮動的輕量邊註 (Marginal Note) */}
+          <aside className="my-6 md:float-left md:w-48 md:mr-10 md:mb-6 border-l-2 border-indigo-200 pl-4">
+            <p className="text-slate-500 text-sm font-serif italic leading-relaxed m-0 text-justify">
+              平台推送的，不只是你想看的內容，也是在持續塑造你理解世界的方式。
+            </p>
+          </aside>
+
           <p className="mb-6 text-justify leading-loose text-slate-700">
             有些改變很明顯。比如你會突然開始在意自己的外表，開始覺得自己是不是不夠好看、不夠上鏡、不夠有魅力。有些改變卻很安靜，安靜到你幾乎不會發現。你只是慢慢開始覺得，自己的生活好像太普通了，自己的步調好像太慢了，自己的日常好像不夠值得被記錄，也不夠值得被看見。於是，社群媒體不只是一個讓人觀看別人的地方。它也逐漸變成了一個讓人開始反覆審視自己的地方。
           </p>
-          <p className="mb-8 text-justify leading-loose text-slate-700">
+          <p className="mb-8 text-justify leading-loose text-slate-700 clear-both">
             這是一種很微妙的經驗。你原本可能只是想放鬆，結果滑著滑著，心裡卻開始浮出一些說不太清楚的感覺。不是巨大的悲傷，也不是明確的痛苦，而是一種淡淡的失落、一點點不安，還有某種說不上來的空。你看見別人過得很精彩，看見別人總是有故事可以分享，有照片可以發，有值得被羨慕的時刻可以展示。然後你突然低頭看自己的生活，會忍不住想：為什麼我今天什麼都沒有？為什麼我好像沒有那麼多值得分享的東西？為什麼別人看起來都過得比我更像他們自己？
           </p>
 
@@ -1177,7 +1213,7 @@ export default function App() {
             我們其實都知道這件事。我們知道照片會修，文案會想，限時動態只會挑最值得發的那幾秒。可即使如此，當這樣的內容一則一則、一天天地出現在眼前，人還是很難完全不受影響。理智上知道那不是全部，感受上卻還是會被拉走。最後，我們不一定真的相信別人的人生沒有痛苦，但我們會開始懷疑，為什麼自己的人生看起來沒有那麼好看。
           </p>
           <p className="mb-8 text-justify leading-loose text-slate-700">
-            而更值得注意的是，社群媒體真正改變的，往往不只是我們看待別人的方式，而是我們看待自己的方式。今天的社群平台，早就不只是單純讓人和朋友保持聯絡的工具。它同時也是一套會不斷觀察你的系統。你停在哪一張照片比較久、你會點開什麼樣的影片、你對哪種內容特別容易有反應、你對什麼題材特別在意，平台都在記錄。然後，它再依照這些痕跡，把更多相似的內容推回到你面前。
+            而更值得注意的是，社群媒體真正改變的，往往不只是我們看待別人的方式，而是我們看待自己的方式。今天的社群平台，早就不只是單純讓人和朋友保持聯絡的工具。它同時也是一套會不斷觀察你的系統。你停在哪一張照片比較久、你會點開什麼樣的影片、你對哪種內容特別容易有反應、你對什麼題材特別在意，平台都在記錄。然後，它再依照這些痕跡，把更多相似內容推回到你面前。
           </p>
           <p className="mb-8 text-justify leading-loose text-slate-700">
             如果你對身材內容停留比較久，它就讓你看到更多身材。如果你對成就感到敏感，它就給你更多成功故事。如果你對愛情、生活風格、外貌、金錢、旅行特別有反應，那麼你的世界就會越來越被這些畫面包圍。於是，你看到的，慢慢不再只是世界本來的樣子，而是平台替你組出來的樣子。一個根據你的注意力、你的欲望、你的焦慮、你的停留時間量身打造出來的世界。
@@ -1262,7 +1298,7 @@ export default function App() {
       vol: "Vol. 05",
       category: "未來反思",
       title: "重新拿回第一人稱：如何不再只是演算法裡的 NPC？",
-      icon: <Compass size={20} />,
+      iconName: "Compass",
       imageUrl: "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&q=80&w=1200", 
       imageAlt: "放下手機，重新找回生活中的第一人稱視角，奪回注意力的掌控權",
       metrics: { views: "15.2M", retention: "99%", trigger: "Mindful_Choice" },
@@ -1344,6 +1380,14 @@ export default function App() {
               「重新拿回第一人稱，並不需要關掉所有帳號，而是要讓你的生活，再次大於你的社交媒體。這場安靜的革命，就在你決定放下手機、感受真實世界溫度的那個直覺瞬間開始。」
             </p>
           </div>
+          
+          {/* 插入專家引用 D：結尾收束引用 (End Note) */}
+          <div className="mt-20 mb-12 py-12 border-t-2 border-b border-slate-200 max-w-2xl mx-auto flex flex-col items-center">
+            <div className="text-indigo-500 font-mono text-[10px] tracking-widest uppercase mb-4 font-bold">打破推薦的舒適圈</div>
+            <p className="text-slate-800 font-serif text-lg md:text-xl leading-relaxed text-center m-0 text-balance italic">
+              平台推薦雖然帶來方便，但副作用是資訊繭房。當系統不斷推送我們熟悉、偏好、會停留的內容時，我們接觸外部世界的方式，也會逐漸被收窄。真正重要的，也許不是拒絕使用平台，而是主動接觸不同觀點，重新把自己拉回更開放的世界。
+            </p>
+          </div>
         </>
       ),
       sidebarStats: {
@@ -1358,8 +1402,24 @@ export default function App() {
     }
   ];
 
+  // Helper function for icon rendering
+  const getIcon = (name, size) => {
+    switch (name) {
+      case "Terminal": return <Terminal size={size} />;
+      case "Cpu": return <Cpu size={size} />;
+      case "TrendingUp": return <TrendingUp size={size} />;
+      case "Globe2": return <Globe2 size={size} />;
+      case "Sparkles": return <Sparkles size={size} />;
+      case "Users": return <Users size={size} />;
+      case "Smartphone": return <Smartphone size={size} />;
+      case "Eye": return <Eye size={size} />;
+      case "Compass": return <Compass size={size} />;
+      default: return <BookOpen size={size} />;
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-[#FDFDFD] font-sans text-slate-800 selection:bg-amber-200 selection:text-amber-900 pb-0">
+    <div className="min-h-screen bg-[#FDFDFD] font-sans text-slate-800 selection:bg-amber-200 selection:text-amber-900 pb-0 relative">
       
       {/* ==========================================
           頂部導覽列 (動態適應當前專題色系)
@@ -1788,6 +1848,7 @@ export default function App() {
               {/* 專題文章網格 (改版為: 1 主卡 + 側邊推薦 Feed 結構) */}
               <section className="bg-slate-50 py-20 md:py-28">
                 <div className="max-w-7xl mx-auto px-6 md:px-12">
+
                   <div className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-indigo-100 pb-6">
                     <div>
                       <div className="text-indigo-600 font-bold tracking-[0.2em] text-xs mb-3 flex items-center gap-2 uppercase font-mono">
@@ -1832,7 +1893,7 @@ export default function App() {
                          
                          <div className="p-8 md:p-10 flex flex-col justify-center flex-1">
                            <div className="text-[10px] font-bold text-indigo-400 mb-3 tracking-[0.2em] uppercase flex items-center gap-1.5 font-mono">
-                             {socialSeriesData[0].icon} {socialSeriesData[0].vol}
+                             {getIcon(socialSeriesData[0].iconName, 14)} {socialSeriesData[0].vol}
                            </div>
                            <h3 className="font-black text-slate-900 tracking-tight leading-snug group-hover:text-indigo-600 transition-colors mb-4 text-3xl md:text-4xl">
                              {socialSeriesData[0].title}
@@ -1884,6 +1945,48 @@ export default function App() {
                     </div>
 
                   </div>
+
+                  {/* 首頁：專家特訪精修版 (Editorial Framework) - 位於文章網格正下方 */}
+                  <div className="mt-20 border-y border-indigo-900/40 py-16">
+                    <div className="max-w-4xl mx-auto flex flex-col gap-10">
+                      <div className="flex flex-col items-start">
+                        <div className="text-indigo-400 font-mono text-[10px] tracking-[0.3em] font-bold uppercase mb-6 flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 bg-indigo-500 rounded-full"></span> 專家視角 / Expert Perspective
+                        </div>
+                        <h3 className="text-3xl md:text-5xl font-black text-slate-900 leading-tight font-serif mb-6">
+                          王志仁觀察：<br/><span className="text-indigo-600 text-2xl md:text-4xl mt-3 block font-serif">平台正在把每個人推向不同版本的世界</span>
+                        </h3>
+                        
+                        {/* 人物介紹 - Byline style */}
+                        <div className="pl-4 border-l-2 border-indigo-500 mb-8">
+                          <p className="text-slate-600 font-sans text-sm leading-relaxed">
+                            <strong className="text-slate-800">王志仁</strong>，現任《數位時代》總編輯，長期關注科技產業、平台變遷與數位媒體發展。從網路時代、行動時代到 AI 時代，他持續觀察科技如何改變內容分發、使用者行為與人們理解世界的方式。
+                          </p>
+                        </div>
+
+                        <p className="text-slate-700 leading-relaxed font-serif text-lg text-justify">
+                          今天的平台早已不只是提供內容的工具，而是一套會分析使用者、分發內容、放大偏好，並逐漸改變人們觀看世界方式的系統。當每個人都被推向不同版本的資訊環境時，我們看到的，不一定只是世界本身，也可能是平台替我們篩選過的世界。
+                        </p>
+                      </div>
+
+                      {/* 三個觀點 - Editorial notes style (not cards) */}
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8 border-t border-slate-300">
+                        <div className="flex flex-col">
+                          <div className="text-indigo-500 font-mono text-[10px] font-bold mb-3 tracking-widest uppercase">01 — 大平台只會更大</div>
+                          <p className="text-slate-600 text-sm leading-relaxed text-justify">如果只靠市場力量發展，社群平台往往會走向大者恆大。大型科技公司會透過收購、投資，把潛在競爭者提早納入版圖，平台集中化因此愈發明顯。</p>
+                        </div>
+                        <div className="flex flex-col">
+                          <div className="text-indigo-500 font-mono text-[10px] font-bold mb-3 tracking-widest uppercase">02 — 千人千面已成為內容分發常態</div>
+                          <p className="text-slate-600 text-sm leading-relaxed text-justify">今天的平台不再是一對多的大眾媒體，而是透過使用者行為分析，進入一對一客製化的內容分發。表面上大家都在用同一個平台，但實際上，每個人看到的都是不同版本的世界。</p>
+                        </div>
+                        <div className="flex flex-col">
+                          <div className="text-indigo-500 font-mono text-[10px] font-bold mb-3 tracking-widest uppercase">03 — 推薦越方便，資訊繭房越明顯</div>
+                          <p className="text-slate-600 text-sm leading-relaxed text-justify">平台推薦雖然提供了效率與便利，卻也可能把使用者包進資訊繭房之中。當系統不斷推送我們熟悉、偏好、會停留的內容時，我們接觸外部世界的方式，也會逐漸被收窄。</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
               </section>
 
@@ -2002,12 +2105,12 @@ export default function App() {
                 </div>
 
                 {/* 實際正文 */}
-                <article className="prose prose-base md:prose-lg prose-indigo text-slate-700 max-w-none font-serif mb-20">
+                <article className="prose prose-base md:prose-lg prose-indigo text-slate-700 max-w-none font-serif mb-20 relative clear-both overflow-hidden overflow-visible">
                   {socialSeriesData[socialView - 1].content}
                 </article>
 
                 {/* 底部導航 (社群 Feed 風格) */}
-                <div className="mt-16 pt-10 border-t border-dashed border-slate-300 flex flex-col items-center gap-6">
+                <div className="mt-16 pt-10 border-t border-dashed border-slate-300 flex flex-col items-center gap-6 clear-both">
                   <div className="text-[10px] font-mono text-slate-400 tracking-[0.2em] uppercase">
                     --- End of Session ---
                   </div>
