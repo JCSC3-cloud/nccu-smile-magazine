@@ -25,8 +25,475 @@ import {
   Hash,
   MousePointer2,
   ArrowRight,
-  Monitor
+  Monitor,
+  Play
 } from 'lucide-react';
+
+// ==========================================
+// GUI 專題：視窗式影片嵌入組件 (深色全寬版)
+// ==========================================
+const VideoEmbed = () => (
+  <section className="w-full bg-slate-950 border-y border-slate-800 my-20">
+    <div className="max-w-7xl mx-auto px-6 md:px-12 py-20 md:py-24">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        
+        <div className="lg:col-span-4">
+          <div className="flex items-center gap-3 mb-6">
+            <span className="w-2 h-2 rounded-full bg-orange-400"></span>
+            <p className="font-mono text-xs font-bold text-orange-400 uppercase tracking-[0.35em]">
+              Video Interface
+            </p>
+          </div>
+
+          <h2 className="text-4xl md:text-5xl font-serif font-bold text-white leading-tight mb-6">
+            先看見介面，<br />
+            才讀懂革命
+          </h2>
+
+          <p className="text-base md:text-lg text-slate-300 leading-loose mb-8">
+            從命令列到滑鼠，從視窗到圖形介面，GUI 的革命不是讓電腦變強，而是讓人第一次覺得自己能理解電腦。這支影片，是進入本期專題前的第一個入口。
+          </p>
+
+          <div className="space-y-3 border-t border-slate-700 pt-6">
+            <div className="flex items-center justify-between gap-4 font-mono text-xs">
+              <span className="text-slate-500 uppercase tracking-[0.25em]">Watch Time</span>
+              <span className="text-slate-200">3:51</span>
+            </div>
+            <div className="flex items-center justify-between gap-4 font-mono text-xs">
+              <span className="text-slate-500 uppercase tracking-[0.25em]">Mode</span>
+              <span className="text-slate-200">GUI History</span>
+            </div>
+            <div className="flex items-center justify-between gap-4 font-mono text-xs">
+              <span className="text-slate-500 uppercase tracking-[0.25em]">Status</span>
+              <span className="text-orange-300">Ready to Play</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="lg:col-span-8">
+          <div className="rounded-[1.75rem] border border-slate-700 bg-slate-900 p-3 md:p-4 shadow-2xl">
+            <div className="mb-3 flex items-center justify-between border-b border-slate-700 pb-3">
+              <div className="flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-orange-400"></span>
+                <span className="w-2.5 h-2.5 rounded-full bg-slate-600"></span>
+                <span className="w-2.5 h-2.5 rounded-full bg-slate-600"></span>
+              </div>
+
+              <p className="font-mono text-[10px] md:text-xs text-slate-500 tracking-[0.25em] uppercase">
+                SMILE / GUI_VIDEO_PLAYER
+              </p>
+            </div>
+
+            <div className="w-full aspect-video overflow-hidden rounded-2xl bg-black">
+              <iframe
+                className="w-full h-full block"
+                src="https://www.youtube.com/embed/J6FbvGPzYUs"
+                title="GUI 革命影片導覽"
+                frameBorder="0"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+          </div>
+
+          <div className="mt-5 flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-sm">
+            <p className="text-slate-500">
+              影像導覽：從操作門檻到直覺介面的演進。
+            </p>
+
+            <a
+              href="https://youtu.be/J6FbvGPzYUs"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 font-bold text-orange-400 hover:text-orange-300 transition-colors"
+            >
+              在 YouTube 開啟 →
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+);
+
+// ==========================================
+// 社群專題：社群動態牆式影片嵌入組件 (獨立 CSS 鎖死版)
+// ==========================================
+const SocialVideoEmbed = () => (
+  <>
+    <style>{`
+      .social-video-lock,
+      .social-video-lock * {
+        box-sizing: border-box;
+        writing-mode: horizontal-tb !important;
+        text-orientation: mixed !important;
+      }
+
+      .social-video-lock {
+        width: 100% !important;
+        max-width: none !important;
+        margin: 80px 0 !important;
+        padding: 0 !important;
+        background: #f8fafc;
+        border-top: 1px solid #e2e8f0;
+        border-bottom: 1px solid #e2e8f0;
+        overflow: hidden;
+        position: relative;
+        display: block !important;
+      }
+
+      .social-video-inner {
+        width: 100% !important;
+        max-width: 1280px !important;
+        margin: 0 auto !important;
+        padding: 96px 48px !important;
+        display: grid !important;
+        grid-template-columns: minmax(0, 7fr) minmax(0, 5fr) !important;
+        gap: 64px !important;
+        align-items: center !important;
+      }
+
+      .social-video-card {
+        width: 100% !important;
+        min-width: 0 !important;
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 32px;
+        box-shadow: 0 24px 60px rgba(15, 23, 42, 0.16);
+        overflow: hidden;
+      }
+
+      .social-video-profile {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 16px !important;
+        padding: 18px 24px;
+        border-bottom: 1px solid #f1f5f9;
+      }
+
+      .social-video-profile-left {
+        display: flex !important;
+        align-items: center !important;
+        gap: 12px !important;
+        min-width: 0 !important;
+      }
+
+      .social-video-avatar {
+        width: 44px;
+        height: 44px;
+        flex: 0 0 44px;
+        border-radius: 999px;
+        background: #020617;
+        color: #fb923c;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+      }
+
+      .social-video-name {
+        margin: 0;
+        font-weight: 800;
+        color: #0f172a;
+        line-height: 1.2;
+      }
+
+      .social-video-handle {
+        margin: 2px 0 0;
+        font-size: 12px;
+        color: #64748b;
+      }
+
+      .social-video-frame-wrap {
+        background: #020617;
+        padding: 16px;
+      }
+
+      .social-video-frame {
+        width: 100% !important;
+        aspect-ratio: 16 / 9;
+        background: black;
+        border-radius: 20px;
+        overflow: hidden;
+      }
+
+      .social-video-frame iframe {
+        width: 100% !important;
+        height: 100% !important;
+        display: block !important;
+        border: 0 !important;
+      }
+
+      .social-video-body {
+        padding: 18px 24px 22px;
+      }
+
+      .social-video-actions {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        gap: 12px !important;
+        flex-wrap: wrap !important;
+        margin-bottom: 14px;
+        font-size: 14px;
+        font-weight: 800;
+        color: #334155;
+      }
+
+      .social-video-actions-left {
+        display: flex !important;
+        gap: 18px !important;
+        flex-wrap: wrap !important;
+      }
+
+      .social-video-caption {
+        margin: 0;
+        color: #1e293b;
+        line-height: 1.8;
+      }
+
+      .social-video-youtube {
+        display: inline-flex;
+        margin-top: 12px;
+        font-size: 14px;
+        font-weight: 800;
+        color: #f97316;
+        text-decoration: none;
+      }
+
+      .social-video-text {
+        width: 100% !important;
+        min-width: 0 !important;
+      }
+
+      .social-video-kicker {
+        display: flex !important;
+        align-items: center !important;
+        gap: 12px !important;
+        margin-bottom: 24px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        color: #f97316;
+        white-space: nowrap;
+      }
+
+      .social-video-dot {
+        width: 8px;
+        height: 8px;
+        flex: 0 0 8px;
+        border-radius: 999px;
+        background: #f97316;
+      }
+
+      .social-video-title {
+        margin: 0 0 24px;
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: clamp(40px, 5vw, 64px);
+        line-height: 1.05;
+        font-weight: 900;
+        color: #020617;
+      }
+
+      .social-video-desc {
+        margin: 0 0 32px;
+        font-size: 18px;
+        line-height: 2;
+        color: #475569;
+      }
+
+      .social-video-insights {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .social-video-insight {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        gap: 24px !important;
+        padding-bottom: 14px;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .social-video-insight small {
+        flex: 0 0 auto;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 12px;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: #94a3b8;
+      }
+
+      .social-video-insight strong {
+        text-align: right;
+        color: #1e293b;
+        font-weight: 900;
+      }
+
+      .social-float-a,
+      .social-float-b {
+        position: absolute;
+        pointer-events: none;
+        background: rgba(255,255,255,0.78);
+        border: 1px solid #e2e8f0;
+        color: #94a3b8;
+        font-size: 12px;
+        font-weight: 800;
+        padding: 12px 16px;
+        border-radius: 16px;
+        box-shadow: 0 12px 30px rgba(15,23,42,0.08);
+      }
+
+      .social-float-a {
+        left: 40px;
+        top: 48px;
+        transform: rotate(-5deg);
+      }
+
+      .social-float-b {
+        right: 48px;
+        bottom: 64px;
+        transform: rotate(4deg);
+      }
+
+      @media (max-width: 1024px) {
+        .social-video-inner {
+          grid-template-columns: 1fr !important;
+          padding: 72px 28px !important;
+          gap: 48px !important;
+        }
+
+        .social-video-text {
+          order: -1;
+        }
+
+        .social-float-a,
+        .social-float-b {
+          display: none;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .social-video-inner {
+          padding: 56px 20px !important;
+        }
+
+        .social-video-title {
+          font-size: 38px;
+        }
+
+        .social-video-desc {
+          font-size: 16px;
+        }
+
+        .social-video-insight {
+          align-items: flex-start !important;
+          flex-direction: column;
+          gap: 6px !important;
+        }
+
+        .social-video-insight strong {
+          text-align: left;
+        }
+      }
+    `}</style>
+
+    <section className="social-video-lock">
+      <div className="social-float-a">Recommended for you</div>
+      <div className="social-float-b">Someone liked this</div>
+
+      <div className="social-video-inner">
+        <div className="social-video-card">
+          <div className="social-video-profile">
+            <div className="social-video-profile-left">
+              <div className="social-video-avatar">S</div>
+              <div>
+                <p className="social-video-name">SMILE Social Lab</p>
+                <p className="social-video-handle">@smile.interface · 推薦給你</p>
+              </div>
+            </div>
+            <div style={{ color: '#94a3b8', fontSize: 22, lineHeight: 1 }}>...</div>
+          </div>
+
+          <div className="social-video-frame-wrap">
+            <div className="social-video-frame">
+              <iframe
+                src="https://www.youtube.com/embed/QbwmLUrDLcM"
+                title="社群平台影片導覽"
+                frameBorder="0"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+          </div>
+
+          <div className="social-video-body">
+            <div className="social-video-actions">
+              <div className="social-video-actions-left">
+                <span>♥ 12.8K</span>
+                <span>💬 428</span>
+                <span>↗ Share</span>
+              </div>
+              <span>Save</span>
+            </div>
+
+            <p className="social-video-caption">
+              <strong>SMILE Social Lab</strong>：演算法不是幫你找朋友，而是幫注意力找到出口。
+            </p>
+
+            <a
+              href="https://youtu.be/QbwmLUrDLcM"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-video-youtube"
+            >
+              在 YouTube 開啟 →
+            </a>
+          </div>
+        </div>
+
+        <div className="social-video-text">
+          <div className="social-video-kicker">
+            <span className="social-video-dot"></span>
+            <span>Social Feed</span>
+          </div>
+
+          <h2 className="social-video-title">
+            先被推薦，<br />
+            才開始選擇
+          </h2>
+
+          <p className="social-video-desc">
+            社群平台看似讓我們自由滑動，但每一次停留、點讚、留言與重播，都在訓練下一次被推到眼前的內容。這支影片，是進入本期社群專題前的第一則推薦貼文。
+          </p>
+
+          <div className="social-video-insights">
+            <div className="social-video-insight">
+              <small>Insight 01</small>
+              <strong>Feed is not neutral</strong>
+            </div>
+            <div className="social-video-insight">
+              <small>Insight 02</small>
+              <strong>Attention becomes data</strong>
+            </div>
+            <div className="social-video-insight">
+              <small>Insight 03</small>
+              <strong>Algorithm shapes culture</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </>
+);
 
 // ==========================================
 // 主應用程式 Component
@@ -325,7 +792,7 @@ export default function App() {
             而是開始努力讓自己看起來「很好懂」。<br/>
             於是我們今天才能一邊滑手機，一邊完全不覺得自己在使用什麼高科技。<br/>
             ——畢竟，如果一項技術真的夠成功，<br/>
-                它最終的樣子，通常是：看起來什麼都沒發生。
+            它最終的樣子，通常是：看起來什麼都沒發生。
           </p>
         </>
       ),
@@ -861,12 +1328,12 @@ export default function App() {
             </div>
           </div>
           
-          {/* 次引言 Style (Editorial Inline Supplement) */}
-          <div className="my-10 pl-5 md:pl-6 border-l-[3px] border-indigo-500 py-2">
-            <div className="text-indigo-500 font-mono text-[10px] tracking-[0.2em] uppercase mb-3 font-bold flex items-center gap-2">
-               <div className="w-1 h-1 bg-indigo-500 rounded-full"></div> 王志仁觀察
+          {/* 次引言 Style (Editorial Inline Supplement) - 第 1 篇 */}
+          <div className="my-10 pl-5 md:pl-6 border-l-[3px] border-indigo-500 bg-indigo-500/5 py-4 pr-6 rounded-r-lg">
+            <div className="text-indigo-400 font-mono text-[10px] tracking-[0.2em] uppercase mb-3 font-bold flex items-center gap-2">
+               <div className="w-1.5 h-1.5 bg-indigo-500 rounded-full"></div> 王志仁觀察
             </div>
-            <p className="text-slate-700 font-serif text-lg leading-relaxed text-justify m-0">
+            <p className="text-slate-300 font-serif text-base leading-relaxed text-justify m-0">
               如果只依靠市場力量，平台的發展往往會走向大者恆大。大型科技公司透過收購與投資，將潛在競爭者提早納入版圖，平台集中化因此愈發明顯。
             </p>
           </div>
@@ -1057,10 +1524,10 @@ export default function App() {
             演算法的本質：抓住眼球
           </h3>
           
-          {/* 插入專家引用 B：向右浮動的細緻邊註 (Slim Side Note) */}
-          <aside className="my-8 md:float-right md:w-64 md:ml-10 md:mb-6 border-t border-indigo-300 pt-4">
-            <h4 className="text-indigo-600 font-mono text-[10px] tracking-widest uppercase mb-3 font-bold">平台比你更懂你停在哪裡</h4>
-            <p className="text-slate-500 text-sm font-serif leading-relaxed text-justify m-0 italic">
+          {/* 第 3 篇引言 B：向右浮動的極輕量邊註 (Slim Side Note) */}
+          <aside className="my-8 md:float-right md:w-64 md:ml-10 md:mb-6 border-t border-indigo-400/30 pt-4">
+            <h4 className="text-indigo-400 font-mono text-[10px] tracking-[0.2em] uppercase mb-2 font-bold">平台比你更懂你停在哪裡</h4>
+            <p className="text-slate-400 text-sm font-serif leading-relaxed text-justify m-0 italic">
               在碎片化的網路時代，越容易被消化的內容，就越容易被接受。相較於文字，聲音與影音更符合平台競逐注意力的需求，這也使內容型態與分發邏輯一併改變。
             </p>
           </aside>
@@ -1093,20 +1560,18 @@ export default function App() {
             這句話並不表示使用者真的像商品一樣被單純賣掉。更準確地說，是使用者的行為、停留、偏好與注意力，被平台整理成有商業價值的資源，再出售給需要精準觸及受眾的市場。平台賣的不是你這個人本身，而是你可被預測、可被影響、可被轉化的那一部分。
           </p>
 
-          {/* 插入專家引用 A：千人千面 Pull Quote */}
-          <blockquote className="my-16 py-10 border-y border-indigo-200/50 text-center max-w-3xl mx-auto relative px-6 md:px-12">
-            <div className="text-indigo-500 font-mono text-[10px] tracking-[0.2em] font-bold uppercase mb-6 flex justify-center items-center gap-2">
-              <span className="w-4 h-px bg-indigo-300"></span>
+          {/* 插入專家引用 A：主引言 Pull Quote */}
+          <blockquote className="my-16 py-10 border-y border-slate-700/50 text-center max-w-4xl mx-auto relative px-6 md:px-12">
+            <div className="text-indigo-400 font-mono text-[10px] tracking-[0.3em] font-bold uppercase mb-6 flex justify-center items-center gap-3">
               千人千面
-              <span className="w-4 h-px bg-indigo-300"></span>
             </div>
-            <p className="text-2xl md:text-4xl font-serif font-black text-slate-800 leading-[1.4] text-balance">
-              「今天的平台不再是一對多的大眾媒體，而是透過使用者行為分析，進入一對一客製化的內容分發。表面上大家都在用同一個平台，但實際上，每個人看到的都是不同版本的世界。」
+            <p className="text-3xl md:text-4xl font-serif font-black text-white leading-[1.4] text-balance">
+              「今天的平台不再是一對多的大眾媒體，而是進入一對一客製化的內容分發。表面上大家都在用同一個平台，實際上，每個人看到的都是不同版本的世界。」
             </p>
           </blockquote>
 
           <p className="mb-6 text-justify leading-loose text-slate-700">
-            而最值得警覺的是，這整個過程常常進行得非常自然，甚至自然到讓人誤以為這只是單純的「個人喜好」。比如說，你可能原本只是多看了幾眼某種類型的內容，演算法很快就會記住。之後，你的推薦頁面開始越來越集中、越來越偏向某種特定方向。你看得越多，它推得越多；它推得越多，你停留得也越久。久而久之，你會覺得，好像自己真的就只對這些東西有興趣，好像世界本來就長這樣。
+            而最值得警覺的是，這整個過程常常進行得非常自然，甚至自然到讓人誤以為這只是單純的「個人喜好」。比如說，你可能原本只是多看了幾眼某種類型的內容，演算法很快就會記住。之後，你的推薦頁面開始越來越集中、越來越偏向某特定方向。你看得越多，它推得越多；它推得越多，你停留得也越久。久而久之，你會覺得，好像自己真的就只對這些東西有興趣，好像世界本來就長這樣。
           </p>
           <p className="mb-8 text-justify leading-loose text-slate-700">
             但事實上，那很可能只是平台一步一步把你推進一個更窄、更強化、更容易讓你停留的內容環境裡。於是，看起來像是你在選，其實很多時候，是平台在幫你把能選的東西變得越來越集中。看起來像是你主動喜歡某些內容，但在長時間的互動之後，也可能是平台持續放大那些內容，讓它們看起來比其他東西更重要、更值得看、更難忽略。
@@ -1188,9 +1653,9 @@ export default function App() {
             我們以為自己只是在看別人。只是看別人的近況、別人的生活、別人的選擇，像是站在一個安全距離之外，靜靜地把別人的人生片段收進眼裡。可很多時候，事情沒有那麼簡單。因為當我們不斷看著別人的時候，我們其實也正在一點一點地，被那些畫面重新塑形。
           </p>
           
-          {/* 插入專家引用 C：向左浮動的輕量邊註 (Marginal Note) */}
-          <aside className="my-6 md:float-left md:w-48 md:mr-10 md:mb-6 border-l-2 border-indigo-200 pl-4">
-            <p className="text-slate-500 text-sm font-serif italic leading-relaxed m-0 text-justify">
+          {/* 插入專家引用 C：極輕量的向左浮動邊註 (Marginal Note) */}
+          <aside className="my-6 md:float-left md:w-48 md:mr-10 md:mb-6 border-l-2 border-indigo-500/30 pl-4">
+            <p className="text-slate-500 text-sm font-serif italic leading-relaxed m-0 text-left">
               平台推送的，不只是你想看的內容，也是在持續塑造你理解世界的方式。
             </p>
           </aside>
@@ -1381,10 +1846,17 @@ export default function App() {
             </p>
           </div>
           
-          {/* 插入專家引用 D：結尾收束引用 (End Note) */}
-          <div className="mt-20 mb-12 py-12 border-t-2 border-b border-slate-200 max-w-2xl mx-auto flex flex-col items-center">
-            <div className="text-indigo-500 font-mono text-[10px] tracking-widest uppercase mb-4 font-bold">打破推薦的舒適圈</div>
-            <p className="text-slate-800 font-serif text-lg md:text-xl leading-relaxed text-center m-0 text-balance italic">
+          {/* 第 5 篇引言 D：結尾收束引用 (End Note) */}
+          <div className="mt-20 mb-12 py-12 border-t-2 border-b border-slate-200 max-w-2xl mx-auto flex flex-col items-center relative overflow-hidden">
+            <div className="absolute -top-12 -left-12 opacity-5 text-indigo-500 pointer-events-none">
+              <Quote size={200} />
+            </div>
+            <div className="text-indigo-600 font-mono text-[10px] tracking-[0.3em] uppercase mb-6 font-bold flex items-center gap-3">
+              <span className="w-12 h-[1px] bg-indigo-300"></span>
+              打破推薦的舒適圈
+              <span className="w-12 h-[1px] bg-indigo-300"></span>
+            </div>
+            <p className="text-slate-800 font-serif text-lg md:text-xl leading-loose text-center m-0 text-balance relative z-10 font-bold italic">
               平台推薦雖然帶來方便，但副作用是資訊繭房。當系統不斷推送我們熟悉、偏好、會停留的內容時，我們接觸外部世界的方式，也會逐漸被收窄。真正重要的，也許不是拒絕使用平台，而是主動接觸不同觀點，重新把自己拉回更開放的世界。
             </p>
           </div>
@@ -1579,6 +2051,9 @@ export default function App() {
                     </div>
                  </div>
               </section>
+
+              {/* GUI 影片導覽區塊 (Editorial Video Section) */}
+              <VideoEmbed />
 
               {/* GUI 專題文章網格 */}
               <section className="bg-[#F8F9FA] py-20 md:py-28 border-t border-slate-200">
@@ -1845,6 +2320,9 @@ export default function App() {
                 </div>
               </section>
 
+              {/* === 社群動態牆式影片嵌入區塊 === */}
+              <SocialVideoEmbed />
+
               {/* 專題文章網格 (改版為: 1 主卡 + 側邊推薦 Feed 結構) */}
               <section className="bg-slate-50 py-20 md:py-28">
                 <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -1946,47 +2424,50 @@ export default function App() {
 
                   </div>
 
-                  {/* 首頁：專家特訪精修版 (Editorial Framework) - 位於文章網格正下方 */}
-                  <div className="mt-20 border-y border-indigo-900/40 py-16">
-                    <div className="max-w-4xl mx-auto flex flex-col gap-10">
-                      <div className="flex flex-col items-start">
-                        <div className="text-indigo-400 font-mono text-[10px] tracking-[0.3em] font-bold uppercase mb-6 flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 bg-indigo-500 rounded-full"></span> 專家視角 / Expert Perspective
-                        </div>
-                        <h3 className="text-3xl md:text-5xl font-black text-slate-900 leading-tight font-serif mb-6">
-                          王志仁觀察：<br/><span className="text-indigo-600 text-2xl md:text-4xl mt-3 block font-serif">平台正在把每個人推向不同版本的世界</span>
-                        </h3>
-                        
-                        {/* 人物介紹 - Byline style */}
-                        <div className="pl-4 border-l-2 border-indigo-500 mb-8">
-                          <p className="text-slate-600 font-sans text-sm leading-relaxed">
-                            <strong className="text-slate-800">王志仁</strong>，現任《數位時代》總編輯，長期關注科技產業、平台變遷與數位媒體發展。從網路時代、行動時代到 AI 時代，他持續觀察科技如何改變內容分發、使用者行為與人們理解世界的方式。
-                          </p>
-                        </div>
+                </div>
+              </section>
 
-                        <p className="text-slate-700 leading-relaxed font-serif text-lg text-justify">
-                          今天的平台早已不只是提供內容的工具，而是一套會分析使用者、分發內容、放大偏好，並逐漸改變人們觀看世界方式的系統。當每個人都被推向不同版本的資訊環境時，我們看到的，不一定只是世界本身，也可能是平台替我們篩選過的世界。
-                        </p>
-                      </div>
-
-                      {/* 三個觀點 - Editorial notes style (not cards) */}
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8 border-t border-slate-300">
-                        <div className="flex flex-col">
-                          <div className="text-indigo-500 font-mono text-[10px] font-bold mb-3 tracking-widest uppercase">01 — 大平台只會更大</div>
-                          <p className="text-slate-600 text-sm leading-relaxed text-justify">如果只靠市場力量發展，社群平台往往會走向大者恆大。大型科技公司會透過收購、投資，把潛在競爭者提早納入版圖，平台集中化因此愈發明顯。</p>
-                        </div>
-                        <div className="flex flex-col">
-                          <div className="text-indigo-500 font-mono text-[10px] font-bold mb-3 tracking-widest uppercase">02 — 千人千面已成為內容分發常態</div>
-                          <p className="text-slate-600 text-sm leading-relaxed text-justify">今天的平台不再是一對多的大眾媒體，而是透過使用者行為分析，進入一對一客製化的內容分發。表面上大家都在用同一個平台，但實際上，每個人看到的都是不同版本的世界。</p>
-                        </div>
-                        <div className="flex flex-col">
-                          <div className="text-indigo-500 font-mono text-[10px] font-bold mb-3 tracking-widest uppercase">03 — 推薦越方便，資訊繭房越明顯</div>
-                          <p className="text-slate-600 text-sm leading-relaxed text-justify">平台推薦雖然提供了效率與便利，卻也可能把使用者包進資訊繭房之中。當系統不斷推送我們熟悉、偏好、會停留的內容時，我們接觸外部世界的方式，也會逐漸被收窄。</p>
-                        </div>
-                      </div>
+              {/* 首頁：專家特訪精修版 (Editorial Framework) */}
+              <section className="bg-white py-16 md:py-24 border-t border-slate-200">
+                <div className="max-w-5xl mx-auto px-6 md:px-12 flex flex-col lg:flex-row gap-12 lg:gap-20">
+                  <div className="lg:w-1/2 flex flex-col justify-start">
+                    <div className="text-indigo-400 font-mono text-[10px] tracking-[0.3em] font-bold uppercase mb-6 flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 bg-indigo-500 rounded-full"></span> 專家視角 / Expert Perspective
                     </div>
+                    <h3 className="text-3xl md:text-5xl font-black text-slate-900 leading-tight font-serif mb-6">
+                      王志仁觀察：<br/><span className="text-indigo-600 text-2xl md:text-4xl mt-3 block font-serif">平台正在把每個人推向不同版本的世界</span>
+                    </h3>
+                    
+                    {/* 人物介紹 - Byline style */}
+                    <div className="pl-4 border-l-2 border-indigo-500 mb-8">
+                      <p className="text-slate-600 font-sans text-sm leading-relaxed">
+                        <strong className="text-slate-800">王志仁</strong>，現任《數位時代》總編輯，長期關注科技產業、平台變遷與數位媒體發展。從網路時代、行動時代到 AI 時代，他持續觀察科技如何改變內容分發、使用者行為與人們理解世界的方式。
+                      </p>
+                    </div>
+
+                    <p className="text-slate-700 leading-relaxed font-serif text-lg text-justify">
+                      今天的平台早已不只是提供內容的工具，而是一套會分析使用者、分發內容、放大偏好，並逐漸改變人們觀看世界方式的系統。當每個人都被推向不同版本的資訊環境時，我們看到的，不一定只是世界本身，也可能是平台替我們篩選過的世界。
+                    </p>
                   </div>
 
+                  {/* 三個觀點 - Editorial notes style (not cards) */}
+                  <div className="lg:w-1/2 flex flex-col gap-8 md:pt-4">
+                    <div className="border-t border-slate-300 pt-5">
+                      <div className="text-indigo-600 font-mono text-[10px] font-bold mb-3 tracking-widest uppercase">01 —</div>
+                      <h4 className="text-slate-900 font-bold text-xl mb-3 font-serif">大平台只會更大</h4>
+                      <p className="text-slate-600 text-sm leading-relaxed text-justify">如果只靠市場力量發展，社群平台往往會走向大者恆大。大型科技公司會透過收購、投資，把潛在競爭者提早納入版圖，平台集中化因此愈發明顯。</p>
+                    </div>
+                    <div className="border-t border-slate-300 pt-5">
+                      <div className="text-indigo-600 font-mono text-[10px] font-bold mb-3 tracking-widest uppercase">02 —</div>
+                      <h4 className="text-slate-900 font-bold text-xl mb-3 font-serif">千人千面已成為內容分發常態</h4>
+                      <p className="text-slate-600 text-sm leading-relaxed text-justify">今天的平台不再是一對多的大眾媒體，而是透過使用者行為分析，進入一對一客製化的內容分發。表面上大家都在用同一個平台，但實際上，每個人看到的都是不同版本的世界。</p>
+                    </div>
+                    <div className="border-t border-slate-300 pt-5">
+                      <div className="text-indigo-600 font-mono text-[10px] font-bold mb-3 tracking-widest uppercase">03 —</div>
+                      <h4 className="text-slate-900 font-bold text-xl mb-3 font-serif">推薦越方便，資訊繭房越明顯</h4>
+                      <p className="text-slate-600 text-sm leading-relaxed text-justify">平台推薦雖然提供了效率與便利，卻也可能把使用者包進資訊繭房之中。當系統不斷推送我們熟悉、偏好、會停留的內容時，我們接觸外部世界的方式，也會逐漸被收窄。</p>
+                    </div>
+                  </div>
                 </div>
               </section>
 
@@ -2010,6 +2491,7 @@ export default function App() {
             </main>
           )}
 
+          {/* 社群 單期閱讀頁 */}
           {socialView > 0 && (
             <main className="w-full bg-white pb-24 animate-in fade-in slide-in-from-bottom-4 duration-500">
               
