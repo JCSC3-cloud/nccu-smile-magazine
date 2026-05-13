@@ -30,7 +30,7 @@ import {
 } from 'lucide-react';
 
 // ==========================================
-// GUI 專題：視窗式影片嵌入組件 (深色全寬版)
+// GUI 專題：視窗式影片嵌入組件 (深色全寬橫幅版還原)
 // ==========================================
 const VideoEmbed = () => (
   <section className="w-full bg-slate-950 border-y border-slate-800 my-20">
@@ -134,7 +134,7 @@ const SocialVideoEmbed = () => (
       .social-video-lock {
         width: 100% !important;
         max-width: none !important;
-        margin: 80px 0 !important;
+        margin: 64px 0 32px !important;
         padding: 0 !important;
         background: #f8fafc;
         border-top: 1px solid #e2e8f0;
@@ -148,7 +148,7 @@ const SocialVideoEmbed = () => (
         width: 100% !important;
         max-width: 1280px !important;
         margin: 0 auto !important;
-        padding: 96px 48px !important;
+        padding: 80px 48px 64px !important;
         display: grid !important;
         grid-template-columns: minmax(0, 7fr) minmax(0, 5fr) !important;
         gap: 64px !important;
@@ -405,7 +405,7 @@ const SocialVideoEmbed = () => (
       }
     `}</style>
 
-    <section className="social-video-lock">
+    <section className="relative w-full social-video-lock">
       <div className="social-float-a">Recommended for you</div>
       <div className="social-float-b">Someone liked this</div>
 
@@ -517,11 +517,104 @@ export default function App() {
   // 新增功能：首頁互動時間軸資料
   // ==========================================
   const timelineData = [
-    { year: "1968", title: "一切展示之母", desc: "Douglas Engelbart 展示了滑鼠、視窗與超文本，為現代圖形介面奠定基礎，人類第一次看見「點擊」的可能。", icon: <MousePointer2 size={24} /> },
-    { year: "1984", title: "Macintosh 誕生", desc: "Apple 將圖形介面帶入個人電腦市場，讓「直覺操作」成為現實，開啟了數位平權的黎明。", icon: <Monitor size={24} /> },
-    { year: "2004", title: "社群網路起點", desc: "Facebook 創立，社交重心從單純列表轉向「動態分享」，揭開了數位身分表演的序幕。", icon: <Users size={24} /> },
-    { year: "2016", title: "演算法接管", desc: "社群平台棄用時間排序改用演算法，從「朋友動態」轉向「注意力爭奪」，我們成為流量工廠的一部分。", icon: <Activity size={24} /> },
-    { year: "2026", title: "隱形介面與 AI", desc: "生成式 AI 崛起，我們正從「所見即所得」走向「所思即所得」的新紀元，重新拿回第一人稱。", icon: <Sparkles size={24} /> },
+    {
+      year: "1963",
+      title: "Sketchpad",
+      tag: "概念萌芽",
+      desc: "Ivan Sutherland 完成 Sketchpad，圖形互動開始萌芽，使用者可以直接在螢幕上進行互動式繪圖。",
+      icon: <MousePointer2 size={24} />
+    },
+    {
+      year: "1964",
+      title: "滑鼠原型誕生",
+      tag: "實驗室原型",
+      desc: "Douglas Engelbart 團隊做出早期木製滑鼠原型，為後來 GUI 的指向操作奠定基礎。",
+      icon: <MousePointer2 size={24} />
+    },
+    {
+      year: "1968",
+      title: "一切展示之母",
+      tag: "實驗室原型",
+      desc: "Engelbart 公開展示滑鼠、視窗、超文字、協作編輯與視訊互動，提前預示現代個人電腦的核心樣貌。",
+      icon: <Monitor size={24} />
+    },
+    {
+      year: "1973",
+      title: "Xerox Alto",
+      tag: "實驗室原型",
+      desc: "Xerox PARC 打造 Alto，讓 bitmapped display、滑鼠與圖形介面真正結合成可運作的電腦原型。",
+      icon: <Cpu size={24} />
+    },
+    {
+      year: "1974",
+      title: "Smalltalk",
+      tag: "軟體環境",
+      desc: "Xerox PARC 的 Smalltalk 環境進一步發展出更成熟的視窗、圖示、選單與指標邏輯，讓現代 GUI 的雛形更完整。",
+      icon: <Terminal size={24} />
+    },
+    {
+      year: "1981",
+      title: "Xerox Star",
+      tag: "商業化",
+      desc: "第一批商業化的 GUI 辦公系統之一，把圖示、資料夾、滑鼠、網路與桌面辦公概念整合進產品。",
+      icon: <Monitor size={24} />
+    },
+    {
+      year: "1983",
+      title: "Apple Lisa",
+      tag: "商業化",
+      desc: "Apple 將 GUI 帶入商業市場，雖然價格高昂，但它是 GUI 從實驗室走向產品的重要過渡節點。",
+      icon: <Sparkles size={24} />
+    },
+    {
+      year: "1984",
+      title: "Macintosh",
+      tag: "商業化",
+      desc: "Apple 透過 Macintosh 建立桌面隱喻與直覺操作，讓一般人也能真正學會使用電腦。",
+      icon: <Monitor size={24} />
+    },
+    {
+      year: "1985",
+      title: "Windows 1.0",
+      tag: "生態系萌芽",
+      desc: "Microsoft 正式進入圖形介面市場，GUI 競賽從單一產品走向整個 PC 生態系。",
+      icon: <Globe2 size={24} />
+    },
+    {
+      year: "1990",
+      title: "Windows 3.0",
+      tag: "普及化",
+      desc: "圖形介面開始真正大規模擴散，Microsoft 的 GUI 路線逐漸站穩。",
+      icon: <TrendingUp size={24} />
+    },
+    {
+      year: "1995",
+      title: "Windows 95",
+      tag: "普及化",
+      desc: "開始功能表、工作列與桌面體驗被全球大量使用，GUI 成為家庭與辦公室的標準。",
+      icon: <Globe2 size={24} />
+    },
+    {
+      year: "2007",
+      title: "iPhone 觸控革命",
+      tag: "觸控時代",
+      desc: "多點觸控讓人們從滑鼠與鍵盤轉向直接用手指操作螢幕，介面革命進入新階段。",
+      icon: <Smartphone size={24} />
+    },
+    {
+      year: "2011",
+      title: "Siri 語音助理",
+      tag: "對話介面",
+      desc: "人機互動從圖形操作延伸到語音與自然語言，介面開始不只靠點擊。",
+      icon: <Activity size={24} />
+    },
+    {
+      year: "2022",
+      title: "ChatGPT 崛起",
+      tag: "對話介面",
+      desc: "生成式 AI 崛起，讓人機互動從「點擊視窗」進一步走向「直接對話」。",
+      icon: <Sparkles size={24} />
+    }
   ];
 
   // ==========================================
@@ -2284,7 +2377,7 @@ export default function App() {
             <main className="w-full animate-in fade-in duration-700">
               
               {/* Social 滿版 Hero 視覺：演算法與凝視感 */}
-              <section className="relative w-full h-[85vh] flex items-center justify-center overflow-hidden bg-slate-950">
+              <section className="relative w-full min-h-[560px] md:min-h-[640px] flex items-center justify-center overflow-hidden bg-slate-950 py-20">
                 <img 
                   src="https://images.unsplash.com/photo-1611162616475-46b635cb6868?auto=format&fit=crop&q=80&w=2000" 
                   alt="Social Media Technology" 
@@ -2296,8 +2389,8 @@ export default function App() {
                 <div className="absolute top-1/4 left-1/4 text-indigo-500/30 font-mono text-xs animate-pulse hidden md:block select-none pointer-events-none">[USER_ID: 94827_TRACKED]</div>
                 <div className="absolute bottom-1/3 right-1/4 text-cyan-500/20 font-mono text-xs blur-[1px] hidden md:block select-none pointer-events-none">{`{feed_status: "infinite_scroll"}`}</div>
 
-                <div className="relative z-10 w-full max-w-6xl px-6 md:px-12 text-center md:text-left flex flex-col md:flex-row items-center gap-12 mt-12">
-                   <div className="md:w-3/5 text-left">
+                <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 w-full flex flex-col md:flex-row items-center justify-between gap-12">
+                   <div className="md:w-3/5 text-center md:text-left">
                       <div className="inline-flex items-center gap-2 px-3 py-1 bg-indigo-500/20 border border-indigo-500/30 rounded-full text-indigo-300 text-xs font-bold tracking-[0.2em] mb-6 shadow-[0_0_15px_rgba(99,102,241,0.2)]">
                          <ShieldAlert size={12} />
                          SMILE CHAPTER 02
@@ -2305,12 +2398,12 @@ export default function App() {
                       <h2 className="text-4xl md:text-6xl lg:text-7xl font-black font-sans tracking-tight text-white leading-[1.1] mb-6 text-balance drop-shadow-lg">
                         社群平台：<br/>注意力經濟與身分焦慮
                       </h2>
-                      <p className="text-base md:text-lg text-indigo-100/70 font-light leading-relaxed max-w-2xl text-balance">
+                      <p className="text-base md:text-lg text-indigo-100/70 font-light leading-relaxed max-w-2xl mx-auto md:mx-0 text-balance">
                         我們以為自己在使用平台，其實是平台在決定我們看見什麼。當演算法接管了資訊的分發權，我們該如何重新奪回生活的第一人稱視角？
                       </p>
                    </div>
                    <div className="md:w-2/5 hidden md:flex justify-end opacity-40">
-                      <Smartphone size={300} className="text-indigo-500" strokeWidth={1} />
+                      <Smartphone size={280} className="text-indigo-500" strokeWidth={1} />
                    </div>
                 </div>
 
@@ -2324,7 +2417,7 @@ export default function App() {
               <SocialVideoEmbed />
 
               {/* 專題文章網格 (改版為: 1 主卡 + 側邊推薦 Feed 結構) */}
-              <section className="bg-slate-50 py-20 md:py-28">
+              <section className="bg-slate-50 pt-10 pb-20 md:pt-14 md:pb-28 border-t border-slate-200">
                 <div className="max-w-7xl mx-auto px-6 md:px-12">
 
                   <div className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-indigo-100 pb-6">
