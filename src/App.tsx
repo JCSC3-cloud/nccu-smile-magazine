@@ -85,8 +85,8 @@ const SocialVideoEmbed = () => (
 const AiVideoEmbed = () => (
   <section className="w-full bg-[#050505] border-y border-cyan-900/30 my-16 relative overflow-hidden grid-bg">
     <div className="max-w-7xl mx-auto px-6 md:px-12 py-14 md:py-20">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 border border-cyan-500/20 overflow-hidden bg-slate-950/70 shadow-[0_0_60px_rgba(6,182,212,0.10)]">
-        <div className="lg:col-span-4 p-7 md:p-9 bg-black/60 border-b lg:border-b-0 lg:border-r border-cyan-500/20">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 overflow-hidden border border-cyan-500/18 bg-slate-950/75 shadow-[0_0_64px_rgba(6,182,212,0.09)]">
+        <div className="lg:col-span-4 p-7 md:p-9 bg-black/62 border-b lg:border-b-0 lg:border-r border-cyan-500/18">
           <div className="flex items-center gap-2 mb-7">
             <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
             <p className="font-mono text-[10px] text-cyan-400 tracking-[0.24em]">AI 終章影像｜正式上線</p>
@@ -119,21 +119,45 @@ const AiVideoEmbed = () => (
             <div><span className="text-cyan-300 font-black">內容定位：</span><span className="text-slate-400">AI 時代材料 / SMILE 五篇報導導覽</span></div>
           </div>
         </div>
-        <div className="lg:col-span-8 p-5 md:p-8 flex items-center justify-center bg-black/35">
-          <div className="relative w-full max-w-4xl aspect-video overflow-hidden border border-cyan-500/30 bg-[#020617] shadow-[inset_0_0_70px_rgba(34,211,238,.12),0_0_46px_rgba(34,211,238,.12)]">
-            <div className="absolute inset-0 grid-bg opacity-35 pointer-events-none"></div>
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(34,211,238,.14),transparent_48%),linear-gradient(120deg,rgba(124,58,237,.12),transparent_45%)] pointer-events-none"></div>
-            <div className="absolute left-5 top-5 z-10 font-mono text-[9px] tracking-[0.24em] text-cyan-300/70">影像專題 / Video Feature</div>
-            <div className="absolute right-5 top-5 z-10 border border-cyan-300/25 bg-cyan-300/10 px-2.5 py-1 font-mono text-[8px] tracking-[0.22em] text-cyan-200/80">NOW PLAYING</div>
-            <iframe
-              className="relative z-[1] h-full w-full bg-black"
-              src="https://www.youtube.com/embed/mhNNORxQoUY"
-              title="SMILE 第三部曲 AI 終章影像導讀"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-            />
+        <div className="lg:col-span-8 flex items-center justify-center bg-[radial-gradient(circle_at_center,rgba(8,47,73,.18),transparent_60%)] px-5 py-8 md:px-8 md:py-12">
+          <div className="relative w-full max-w-4xl overflow-hidden border border-cyan-900/60 bg-[#020817]/95 p-4 md:p-6 shadow-[inset_0_0_90px_rgba(8,47,73,.38),0_24px_90px_rgba(0,0,0,.36)]">
+            <div className="absolute inset-0 grid-bg opacity-14 pointer-events-none"></div>
+            <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(34,211,238,.08),transparent_28%,rgba(15,23,42,.55)_58%,rgba(6,182,212,.05))] pointer-events-none"></div>
+            <div className="relative z-10 mb-4 flex items-center justify-between gap-4 border-b border-cyan-900/35 pb-3 font-mono text-[9px] tracking-[0.24em]">
+              <span className="text-cyan-300/80">首映影像艙</span>
+              <span className="text-slate-600">SMILE 03 AI</span>
+              <span className="text-cyan-200/70">NOW PLAYING</span>
+            </div>
+            <div className="relative z-10 grid grid-cols-1 md:grid-cols-[42px_1fr] gap-4 items-center">
+              <div className="hidden md:flex h-full flex-col items-center justify-between border-r border-cyan-900/35 pr-3 font-mono text-[9px] tracking-[0.25em] text-slate-600">
+                <span className="[writing-mode:vertical-rl]">VIDEO FEATURE</span>
+                <span className="h-10 w-px bg-cyan-500/30"></span>
+                <span className="[writing-mode:vertical-rl] text-cyan-300/70">AI FINAL</span>
+              </div>
+              <div>
+                <div className="relative overflow-hidden bg-black p-2.5 shadow-[0_22px_70px_rgba(0,0,0,.52),0_0_42px_rgba(34,211,238,.10)] ring-1 ring-cyan-300/16">
+                  <div className="relative overflow-hidden bg-black" style={{ aspectRatio: "16 / 9" }}>
+                    <iframe
+                      className="h-full w-full bg-black"
+                      src="https://www.youtube.com/embed/mhNNORxQoUY?rel=0&modestbranding=1&playsinline=1"
+                      title="SMILE 第三部曲 AI 終章影像導讀"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      allowFullScreen
+                      style={{ filter: "brightness(0.82) saturate(0.9) contrast(1.04)" }}
+                    />
+                    <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(2,6,23,.24),transparent_24%,transparent_76%,rgba(2,6,23,.24)),linear-gradient(180deg,rgba(2,6,23,.16),transparent_42%,rgba(2,6,23,.24)),radial-gradient(circle_at_center,transparent_45%,rgba(34,211,238,.10))]"></div>
+                    <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_70px_rgba(2,6,23,.72),inset_0_0_34px_rgba(251,146,60,.08)]"></div>
+                    <div className="pointer-events-none absolute left-4 top-4 border border-cyan-300/20 bg-slate-950/70 px-2.5 py-1 font-mono text-[8px] tracking-[0.22em] text-cyan-100/70">AI VIDEO</div>
+                  </div>
+                </div>
+                <div className="mt-4 flex flex-wrap items-center justify-between gap-3 font-mono text-[9px] tracking-[0.22em] text-slate-600">
+                  <span>第三部曲｜影像導讀</span>
+                  <span className="text-cyan-300/70">YouTube Shorts / 已上線</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
