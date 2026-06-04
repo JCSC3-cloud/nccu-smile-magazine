@@ -89,23 +89,23 @@ const AiVideoEmbed = () => (
         <div className="lg:col-span-4 p-7 md:p-9 bg-black/60 border-b lg:border-b-0 lg:border-r border-cyan-500/20">
           <div className="flex items-center gap-2 mb-7">
             <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
-            <p className="font-mono text-[10px] text-cyan-400 tracking-[0.24em]">AI 終章影像｜發布會後解鎖</p>
+            <p className="font-mono text-[10px] text-cyan-400 tracking-[0.24em]">AI 終章影像｜正式上線</p>
           </div>
-          <div className="font-mono text-[9px] tracking-[0.26em] text-slate-500 mb-5">VIDEO FEATURE / LOCKED UNTIL PRESENTATION</div>
+          <div className="font-mono text-[9px] tracking-[0.26em] text-slate-500 mb-5">VIDEO FEATURE / NOW PLAYING</div>
           <h2 className="text-2xl md:text-4xl font-black text-white leading-tight font-serif mb-4">
             第三部曲影像導讀
-            <span className="block text-cyan-200">發布會後正式解鎖</span>
+            <span className="block text-cyan-200">AI 終章正式開播</span>
           </h2>
           {React.createElement(
             "p",
             { className: "text-slate-300 font-serif leading-loose text-base md:text-lg mb-7" },
-            "這支影片將作為 AI 終章的開場入口，帶讀者從 GUI、社群平台，走向「可調度的智慧」。"
+            "這支影片作為 AI 終章的開場入口，帶讀者從 GUI、社群平台，走向「可調度的智慧」。"
           )}
           <div className="space-y-3 border-y border-cyan-900/45 py-5 font-mono text-[10px] tracking-[0.16em]">
             {[
               ["ISSUE", "03 AI"],
               ["MODE", "VIDEO FEATURE"],
-              ["STATUS", "LOCKED"]
+              ["STATUS", "ONLINE"]
             ].map(([label, value]) => (
               <div key={label} className="flex items-center justify-between gap-4">
                 <span className="text-slate-600">{label}</span>
@@ -114,35 +114,26 @@ const AiVideoEmbed = () => (
             ))}
           </div>
           <div className="mt-6 space-y-3 text-sm leading-relaxed">
-            <div><span className="text-cyan-300 font-black">影片狀態：</span><span className="text-slate-400">發布會後解鎖</span></div>
-            <div><span className="text-cyan-300 font-black">觀看模式：</span><span className="text-slate-400">課堂首映後開放</span></div>
+            <div><span className="text-cyan-300 font-black">影片狀態：</span><span className="text-slate-400">第三部曲影片已開放播放</span></div>
+            <div><span className="text-cyan-300 font-black">觀看模式：</span><span className="text-slate-400">YouTube Shorts 影音導讀</span></div>
             <div><span className="text-cyan-300 font-black">內容定位：</span><span className="text-slate-400">AI 時代材料 / SMILE 五篇報導導覽</span></div>
           </div>
         </div>
         <div className="lg:col-span-8 p-5 md:p-8 flex items-center justify-center bg-black/35">
-          <div className="relative w-full max-w-4xl aspect-video overflow-hidden border border-cyan-500/30 bg-[#020617] shadow-[inset_0_0_70px_rgba(34,211,238,.12)]">
-            <div className="absolute inset-0 grid-bg opacity-70"></div>
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(34,211,238,.22),transparent_48%),linear-gradient(120deg,rgba(124,58,237,.18),transparent_45%)]"></div>
-            <div className="absolute inset-0 bg-black/35"></div>
-            <div className="absolute left-0 right-0 top-1/2 h-px bg-gradient-to-r from-transparent via-cyan-300/50 to-transparent"></div>
-            <div className="absolute bottom-5 right-5 font-mono text-[9px] tracking-[0.24em] text-cyan-300/55">AFTER PRESENTATION UNLOCK</div>
-            <div className="absolute left-5 top-5 font-mono text-[9px] tracking-[0.24em] text-cyan-300/70">影像專題 / Video Feature</div>
-            <div className="absolute right-5 top-5 border border-cyan-300/25 bg-cyan-300/10 px-2.5 py-1 font-mono text-[8px] tracking-[0.22em] text-cyan-200/70">PREMIERE LOCKED</div>
-            <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
-              <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full border border-cyan-300/45 bg-cyan-300/[0.08] shadow-[0_0_40px_rgba(34,211,238,.24)]">
-                <Lock size={34} className="text-cyan-100" />
-              </div>
-              <div className="font-mono text-[10px] tracking-[0.28em] text-cyan-300 mb-3">目前狀態：等待課堂發布會解鎖</div>
-              <h3 className="text-3xl md:text-5xl font-black text-white font-serif leading-tight">發布會後解鎖</h3>
-              <p className="mt-4 max-w-xl text-sm md:text-base leading-relaxed text-slate-300 font-serif">
-                AI 終章影像導讀將於課堂發表後開放
-              </p>
-              <button disabled className="mt-7 cursor-not-allowed border border-cyan-300/30 bg-cyan-300/10 px-5 py-2.5 font-mono text-[10px] tracking-[0.24em] text-cyan-100/70 opacity-70">
-                尚未解鎖
-              </button>
-            </div>
-            <div className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-cyan-300/10 to-transparent"></div>
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/70 to-transparent"></div>
+          <div className="relative w-full max-w-4xl aspect-video overflow-hidden border border-cyan-500/30 bg-[#020617] shadow-[inset_0_0_70px_rgba(34,211,238,.12),0_0_46px_rgba(34,211,238,.12)]">
+            <div className="absolute inset-0 grid-bg opacity-35 pointer-events-none"></div>
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(34,211,238,.14),transparent_48%),linear-gradient(120deg,rgba(124,58,237,.12),transparent_45%)] pointer-events-none"></div>
+            <div className="absolute left-5 top-5 z-10 font-mono text-[9px] tracking-[0.24em] text-cyan-300/70">影像專題 / Video Feature</div>
+            <div className="absolute right-5 top-5 z-10 border border-cyan-300/25 bg-cyan-300/10 px-2.5 py-1 font-mono text-[8px] tracking-[0.22em] text-cyan-200/80">NOW PLAYING</div>
+            <iframe
+              className="relative z-[1] h-full w-full bg-black"
+              src="https://www.youtube.com/embed/mhNNORxQoUY"
+              title="SMILE 第三部曲 AI 終章影像導讀"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            />
           </div>
         </div>
       </div>
